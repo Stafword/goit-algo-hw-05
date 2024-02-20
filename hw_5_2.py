@@ -3,7 +3,7 @@ from typing import Callable
 
 
 def generator_numbers(text: str):
-    pattern = r"\b\d+\.\d+\b"
+    pattern = r"\s+\d+\.{0,1}\d*\s+"
     for match in re.finditer(pattern, text):
         yield float(match.group())
 

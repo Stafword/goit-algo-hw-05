@@ -21,8 +21,16 @@ def parse_input(user_input):
 @input_error
 def add_contact(args, contacts):
     name, phone = args
-    contacts[name] = phone
-    return "Contact adadded."
+    if phone.isdigit():
+        if phone in contacts.values():
+            return f"Цей номер вже присутній у контактах."
+        elif name in contacts.keys():
+            return f"Контакт вже існує."
+        else:
+            contacts[name] = phone
+            return f"Контакт додано."
+    else:
+        return "Номер не є цифрами."
 
 
 @input_error
@@ -64,7 +72,7 @@ def main():
             print(add_contact(args, contacts))
         elif command == "change":
             print(change_contact(args, contacts))
-        elif command == "show":
+        elif command == "phone":
             print(show_phone(args, contacts))
         elif command == "all":
             print(show_all(args, contacts))
